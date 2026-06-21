@@ -49,29 +49,29 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label">Full Name</label>
-          <input className="input-field" placeholder="Jane Doe" {...register("name")} />
+          <input className="input-field" {...register("name")} />
           {errors.name && <p className="mt-1 text-xs text-accent-dark">{errors.name.message}</p>}
         </div>
         <div>
           <label className="field-label">Email Address</label>
-          <input className="input-field" placeholder="jane@example.com" {...register("email")} />
+          <input className="input-field" {...register("email")} />
           {errors.email && <p className="mt-1 text-xs text-accent-dark">{errors.email.message}</p>}
         </div>
       </div>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label className="field-label">Phone (optional)</label>
-          <input className="input-field" placeholder="+254 700 000 000" {...register("phone")} />
+          <input className="input-field" {...register("phone")} />
         </div>
         <div>
           <label className="field-label">Subject</label>
-          <input className="input-field" placeholder="Safari enquiry" {...register("subject")} />
+          <input className="input-field" {...register("subject")} />
           {errors.subject && <p className="mt-1 text-xs text-accent-dark">{errors.subject.message}</p>}
         </div>
       </div>
       <div>
         <label className="field-label">Message</label>
-        <textarea rows={5} className="input-field resize-none" placeholder="Tell us how we can help…" {...register("message")} />
+        <textarea rows={5} className="input-field resize-none" {...register("message")} />
         {errors.message && <p className="mt-1 text-xs text-accent-dark">{errors.message.message}</p>}
       </div>
       <Button type="submit" variant="primary" size="lg" disabled={isSubmitting}>

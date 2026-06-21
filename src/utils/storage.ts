@@ -8,6 +8,7 @@ export interface InquirySubmission {
   package_name: string;
   name: string;
   email: string;
+  phone?: string;
   travelers: string;
   travel_start_date: string;
   travel_end_date: string;
@@ -52,6 +53,7 @@ export async function saveInquiry(
   const { error } = await supabase.from("inquiry_submissions").insert({
     name:               data.name,
     email:              data.email,
+    phone:              data.phone ?? null,
     package_name:       data.package_name,
     travelers:          Number(data.travelers),
     travel_start_date:  data.travel_start_date,

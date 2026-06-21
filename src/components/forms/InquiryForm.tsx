@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle2, Send } from "lucide-react";
 import Button from "@/components/ui/Button";
+import PhoneField from "@/components/forms/PhoneField";
 import { saveInquiry } from "@/utils/storage";
 
 const todayStr = new Date().toISOString().split("T")[0];
@@ -12,6 +13,7 @@ const schema = z
   .object({
     name:      z.string().min(2, "Please enter your name"),
     email:     z.string().email("Enter a valid email"),
+    phone:     z.string().optional(),
     travelers: z
       .string()
       .min(1, "Required")
@@ -51,6 +53,7 @@ export default function InquiryForm({
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
@@ -62,6 +65,7 @@ export default function InquiryForm({
       await saveInquiry({
         name:               data.name,
         email:              data.email,
+        phone:              data.phone,
         package_name:       packageName,
         travelers:          data.travelers,
         travel_start_date:  data.startDate,
@@ -116,6 +120,15 @@ export default function InquiryForm({
         />
         {errors.email && (
           <p className="mt-1 text-xs text-accent-dark">{errors.email.message}</p>
+        )}
+      </div>
+
+      {/* Phone Number */}
+      <div>
+        <label className="field-label">Phone Number <span className="normal-case font-normal text-muted">(optional)</span></label>
+        <PhoneField control={control} name="phone" error={errors.phone?.message} />
+        {errors.phone && (
+          <p className="mt-1 text-xs text-accent-dark">{errors.phone.message}</p>
         )}
       </div>
 
