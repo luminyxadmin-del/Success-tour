@@ -1,25 +1,49 @@
+/**
+ * Gallery data sourced entirely from the project's existing package and destination
+ * image assets (Cloudinary CDN). No external image sources used.
+ *
+ * The `galleryImages` export is kept for backwards-compat with any existing
+ * references. The real gallery UI uses `buildTabImages()` in GalleryPage.tsx
+ * which derives images dynamically from destinationImageMap + destinations.
+ */
 import type { GalleryImage } from "@/types";
-import { IMG } from "./images";
+import { destinationImageMap } from "./destinationImages";
+import { destinations } from "./destinations";
 
-export const galleryImages: GalleryImage[] = [
-  { id: "g1", src: IMG.elephants, category: "Wildlife", caption: "Elephant herd at dusk, Amboseli" },
-  { id: "g2", src: IMG.lion, category: "Wildlife", caption: "Lion surveying the plains, Maasai Mara" },
-  { id: "g3", src: IMG.beach, category: "Beach", caption: "Powder-white sands of Diani" },
-  { id: "g4", src: IMG.kilimanjaro, category: "Landscapes", caption: "Kilimanjaro at first light" },
-  { id: "g5", src: IMG.giraffe, category: "Wildlife", caption: "Reticulated giraffe, Samburu" },
-  { id: "g6", src: IMG.flamingos, category: "Wildlife", caption: "Flamingos on Lake Nakuru" },
-  { id: "g7", src: IMG.savanna, category: "Landscapes", caption: "Endless Mara savanna" },
-  { id: "g8", src: IMG.dhow, category: "Culture", caption: "Traditional dhow at sunset, Lamu" },
-  { id: "g9", src: IMG.safariJeep, category: "Safari", caption: "Game drive at golden hour" },
-  { id: "g10", src: IMG.acaciaSunset, category: "Landscapes", caption: "Lone acacia against the sunset" },
-  { id: "g11", src: IMG.zebra, category: "Wildlife", caption: "Zebra on the move" },
-  { id: "g12", src: IMG.beachAerial, category: "Beach", caption: "Turquoise coast from above" },
-  { id: "g13", src: IMG.lodgeTent, category: "Lodges", caption: "Luxury tented camp interior" },
-  { id: "g14", src: IMG.cheetah, category: "Wildlife", caption: "Cheetah on alert" },
-  { id: "g15", src: IMG.riftValley, category: "Landscapes", caption: "Dramatic Rift Valley vistas" },
-  { id: "g16", src: IMG.wildebeest, category: "Wildlife", caption: "The Great Migration in motion" },
-  { id: "g17", src: IMG.beachResort, category: "Lodges", caption: "Beachfront honeymoon suite" },
-  { id: "g18", src: IMG.nairobi, category: "Culture", caption: "Nairobi skyline meets the wild" },
+function unique(arr: string[]): string[] {
+  const seen = new Set<string>();
+  return arr.filter((s) => s && !seen.has(s) && seen.add(s));
+}
+
+// Derive the flat gallery list from all destination image maps
+function buildFlatGallery(): GalleryImage[] {
+  const result: GalleryImage[] = [];
+  let counter = 0;
+
+  for (const dest of destinations) {
+    const mapImgs = destinationImageMap[dest.slug] ?? [];
+    const srcImgs = mapImgs.length > 0
+      ? mapImgs
+      : unique([dest.image, ...dest.gallery]);
+
+    for (const src of srcImgs) {
+      counter++;
+      result.push({
+        id: `g${counter}`,
+        src,
+        category: dest.name,
+        caption: `${dest.name} — wildlife & safari`,
+      });
+    }
+  }
+
+  return result;
+}
+
+export const galleryImages: GalleryImage[] = buildFlatGallery();
+
+// Category list derived from destination names
+export const galleryCategories = [
+  "All",
+  ...Array.from(new Set(galleryImages.map((g) => g.category))),
 ];
-
-export const galleryCategories = ["All", ...Array.from(new Set(galleryImages.map((g) => g.category)))];

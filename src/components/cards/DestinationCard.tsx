@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { Destination } from "@/types";
+import { getDestinationHero } from "@/data/destinationImages";
 
 export default function DestinationCard({ destination, large }: { destination: Destination; large?: boolean }) {
+  const heroImage = getDestinationHero(destination.slug, destination.image);
   return (
     <Link to={`/destinations/${destination.slug}`}
       className={`group relative block h-full overflow-hidden rounded-lg shadow-soft ${large ? "aspect-[4/5]" : ""}`}>
-      <img src={destination.image} alt={destination.name} loading="lazy"
+      <img src={heroImage} alt={destination.name} loading="lazy"
         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-5">

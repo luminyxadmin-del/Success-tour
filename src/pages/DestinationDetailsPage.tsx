@@ -11,12 +11,16 @@ import CTABanner from "@/components/common/CTABanner";
 import NotFoundPage from "./NotFoundPage";
 import { getDestination, destinations } from "@/data/destinations";
 import { getPackagesByRouteKeyword, isDestinationInRoutes } from "@/data/packages";
+import { getDestinationHero, getDestinationGallery } from "@/data/destinationImages";
 
 export default function DestinationDetailsPage() {
   const { slug } = useParams();
   const destination = slug ? getDestination(slug) : undefined;
 
   if (!destination) return <NotFoundPage />;
+
+  const heroImage = getDestinationHero(destination.slug, destination.image);
+  const galleryImages = getDestinationGallery(destination.slug, destination.gallery);
 
   const routeKeyword = destination.routeKeyword ?? destination.name;
   const related = getPackagesByRouteKeyword(routeKeyword);
@@ -30,20 +34,20 @@ export default function DestinationDetailsPage() {
         title={`${destination.name} Safari & Travel Guide`}
         description={destination.description}
         path={`/destinations/${destination.slug}`}
-        image={destination.image}
+        image={heroImage}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "TouristDestination",
           name: destination.name,
           description: destination.description,
-          image: destination.image,
+          image: heroImage,
         }}
       />
       <PageHero
         eyebrow={destination.region}
         title={destination.name}
         subtitle={destination.tagline}
-        image={destination.image}
+        image={heroImage}
         size="lg"
         breadcrumbs={[
           { label: "Home", to: "/" },
@@ -88,7 +92,7 @@ export default function DestinationDetailsPage() {
 
               {/* Gallery */}
               <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {destination.gallery.map((g, i) => (
+                {galleryImages.map((g, i) => (
                   <img key={i} src={g} alt={`${destination.name} ${i + 1}`} loading="lazy"
                     className="aspect-[4/3] w-full rounded-lg object-cover" />
                 ))}
@@ -151,7 +155,7 @@ export default function DestinationDetailsPage() {
         </section>
       )}
 
-      <CTABanner image={destination.gallery[0] ?? destination.image} />
+      <CTABanner image={heroImage} />
     </Page>
   );
 }

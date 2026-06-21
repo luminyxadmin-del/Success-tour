@@ -17,8 +17,8 @@ import DestinationCard from "@/components/cards/DestinationCard";
 import BlogCard from "@/components/cards/BlogCard";
 import TestimonialCard from "@/components/cards/TestimonialCard";
 
-import { IMG } from "@/data/images";
 import { destinations } from "@/data/destinations";
+import { getDestinationHero } from "@/data/destinationImages";
 import { packages, isDestinationInRoutes } from "@/data/packages";
 import { blogs } from "@/data/blogs";
 import { testimonials } from "@/data/testimonials";
@@ -33,10 +33,30 @@ const whyChoose = [
 ];
 
 const experiences = [
-  { title: "The Great Migration", text: "Witness over a million wildebeest brave the Mara River.", image: IMG.wildebeest },
-  { title: "Beneath Kilimanjaro", text: "Photograph giant elephant herds against Africa's highest peak.", image: IMG.kilimanjaro },
-  { title: "Indian Ocean Bliss", text: "Unwind on the powder-white sands of the East African coast.", image: IMG.beach },
-  { title: "Living Culture", text: "Share stories and song with Maasai and Samburu communities.", image: IMG.maasaiCulture },
+  {
+    title: "The Great Migration",
+    text: "Witness over a million wildebeest brave the Mara River.",
+    // wildebeest migration image from the Maasai Mara package gallery
+    image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980695/zebras-wildebeest-migration-wildlife-animals-mammals-savanna-grassland-maasai-mara-national-game-res_ewjapy.webp",
+  },
+  {
+    title: "Beneath Kilimanjaro",
+    text: "Photograph giant elephant herds against Africa's highest peak.",
+    // best Amboseli image: elephant herd with Kilimanjaro backdrop
+    image: getDestinationHero("amboseli", ""),
+  },
+  {
+    title: "Indian Ocean Bliss",
+    text: "Unwind on the powder-white sands of the East African coast.",
+    // coastal/ocean image from the project's package gallery
+    image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781979556/sea-with-seagulls-flying-it-with-greenery-wall_jal770.webp",
+  },
+  {
+    title: "Living Culture",
+    text: "Share stories and song with Maasai and Samburu communities.",
+    // Samburu National Reserve image (Samburu is referenced in the card text)
+    image: getDestinationHero("samburu", ""),
+  },
 ];
 
 export default function HomePage() {
