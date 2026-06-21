@@ -1,0 +1,14 @@
+import type { FAQ } from "@/types";
+
+export const generalFaqs: FAQ[] = [
+  { question: "Do I need a visa to visit Kenya, Uganda or Tanzania?", answer: "Visa requirements vary by destination and nationality. Kenya and Uganda both offer eVisas applied for online before travel. Tanzania requires a visa on arrival or an e-visa. Our team provides full step-by-step guidance and a document checklist as part of every booking." },
+  { question: "What vaccinations or health precautions are recommended?", answer: "A yellow-fever certificate may be required depending on your route and the countries visited, and anti-malarial precautions are advised for most safari areas. Always consult a travel-health professional; we provide general guidance with your pre-departure pack." },
+  { question: "Is East Africa safe to visit?", answer: "Kenya, Uganda and Tanzania are well-established, welcoming safari destinations. We operate in safe, vetted areas with experienced guides and 24/7 support, and we monitor conditions across all three countries continuously." },
+  { question: "What is the best time of year to visit?", answer: "East Africa offers rewarding travel year-round. The dry seasons (June–October and January–February) are ideal for game viewing across Kenya and Tanzania, with the Great Migration in the Mara from July to October. Uganda's gorilla trekking is excellent year-round, though the drier months (June–August, December–February) are most popular." },
+  { question: "How much should I budget for a safari?", answer: "Costs vary with season, accommodation level and length of trip. Our packages range from accessible classics to ultra-luxury journeys; get in touch and we'll tailor options to your budget." },
+  { question: "Are your tours private or group-based?", answer: "Most of our journeys are private and fully customisable, with your own vehicle and guide. We also offer scheduled group departures and large group/corporate programmes." },
+  { question: "What is your booking and cancellation policy?", answer: "A 25% deposit confirms your booking, with the balance due 45 days before departure. Cancellation terms vary by season and supplier and are clearly set out in your booking confirmation." },
+  { question: "What should I pack for a safari?", answer: "Lightweight neutral clothing, a warm layer for mornings, a hat, sunscreen, binoculars and soft luggage for light-aircraft transfers. We send a detailed packing list with every booking." },
+  { question: "Can you accommodate dietary requirements?", answer: "Yes. Lodges and camps readily cater for vegetarian, vegan, halal, kosher and allergy-specific diets — simply let us know in advance." },
+  { question: "Do you offer family-friendly safaris?", answer: "Absolutely. We work with family-friendly properties and patient guides, and design flexible itineraries with activities children love. Minimum-age policies vary by camp and we'll advise accordingly." },
+];

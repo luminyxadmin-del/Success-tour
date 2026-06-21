@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Packages | SERENGETI Expeditions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#291800",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "outline": "#6d7a77",
+                        "background": "#faf9f6",
+                        "surface-container-high": "#e9e8e5",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "on-secondary-fixed-variant": "#633f00",
+                        "on-secondary-container": "#6b4500",
+                        "secondary-container": "#feae2c",
+                        "surface-tint": "#006a61",
+                        "surface-container": "#efeeeb",
+                        "on-background": "#1a1c1a",
+                        "on-tertiary-fixed": "#131b2e",
+                        "accent-teal": "#0D9488",
+                        "inverse-surface": "#2f312f",
+                        "inverse-on-surface": "#f2f1ee",
+                        "surface-container-highest": "#e3e2df",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#00201d",
+                        "surface-container-low": "#f4f3f0",
+                        "surface": "#faf9f6",
+                        "on-primary-container": "#f4fffc",
+                        "surface-dim": "#dbdad7",
+                        "primary-fixed": "#89f5e7",
+                        "surface-dark": "#0F172A",
+                        "inverse-primary": "#6bd8cb",
+                        "secondary-fixed-dim": "#ffb955",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-light": "#FFFFFF",
+                        "surface-variant": "#e3e2df",
+                        "surface-bright": "#faf9f6",
+                        "secondary-fixed": "#ffddb4",
+                        "on-surface": "#1a1c1a",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#6c748b",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#dae2fd",
+                        "primary": "#00685f",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bcc9c6",
+                        "on-primary": "#ffffff",
+                        "secondary": "#835500",
+                        "tertiary": "#545c72",
+                        "on-tertiary-container": "#fefcff",
+                        "accent-gold": "#F5A623",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#008378"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-lg": "3rem",
+                        "section-padding": "5rem",
+                        "margin-mobile": "1rem",
+                        "container-max": "1280px",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1.5rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "price-display": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Montserrat"],
+                        "body-sm": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "price-display": ["24px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background-color: rgba(15, 23, 42, 0.2);
+        }
+        .filter-panel {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: top right;
+        }
+        .filter-panel.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-stack-sm max-w-container-max mx-auto bg-transparent border-b border-outline-variant/30 glass-header">
+<a class="font-display-lg text-display-lg tracking-tighter text-surface-light" href="#">SERENGETI</a>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-on-surface dark:text-surface-light font-medium hover:text-accent-gold transition-colors duration-300" href="#">Destinations</a>
+<a class="text-accent-teal font-bold border-b-2 border-accent-teal pb-1 hover:text-accent-gold transition-colors duration-300" href="#">Safaris</a>
+<a class="text-on-surface dark:text-surface-light font-medium hover:text-accent-gold transition-colors duration-300" href="#">About Us</a>
+<a class="text-on-surface dark:text-surface-light font-medium hover:text-accent-gold transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-accent-teal text-white px-6 py-2 rounded-lg font-bold scale-95 active:opacity-80 transition-all hover:bg-primary-container">
+            Book Now
+        </button>
+</header>
+<main>
+<!-- Hero Banner (Preserved Design) -->
+<section class="relative h-[614px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A wide-angle landscape of the Serengeti plains at sunset, showing a golden savannah with lone acacia trees silhouetted against a vibrant orange and purple sky. The lighting is dramatic and warm, evoking a sense of ancient wonder and premium adventure travel. The aesthetic is cinematic and high-contrast, perfectly aligning with a luxury safari brand's visual identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDzZjehQRM0W7wX9jS95CS1CWHN8-fPsr18HfpeXXLYvCpy69CXaCqNkH4HtMnOhJcySu4VK7EaK6Zy_Jvd5xE1SZN6IGF1uWY1lnEFs8o85v3D-vfh_xj-AcXLdMWMWZr0tn6MaMdFohX8u4D-YfOtRYnYM0QwRwxsexEV-kdAhF9T8TUZjYBaeU5fe4wALCLOrwyb5BO97tJfVWf958geG53zh7ZtvYekey7YkXur_KzgSiXW7V8FLs54vSt8g__zL5UVAmHyuS9M')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="relative z-10 text-center text-surface-light px-gutter">
+<h1 class="font-display-lg text-display-lg mb-stack-sm">Tailored Safari Packages</h1>
+<p class="font-body-lg text-body-lg max-w-2xl mx-auto opacity-90">Discover the heart of the wild through our expertly curated expeditions across the African continent.</p>
+</div>
+</section>
+<!-- Premium Signature Collection Promo -->
+<section class="bg-surface-dark py-section-padding text-surface-light">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2 rounded-xl overflow-hidden shadow-2xl relative group">
+<div class="aspect-[4/3] bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An ultra-luxury safari tent interior at dusk, featuring high-end mahogany furniture, white linen bedding, and brass accents. The front of the tent is open to a private wooden deck overlooking a watering hole where elephants gather. The scene is lit by soft interior lanterns and the deep blue of the twilight sky, creating an atmosphere of exclusive, sophisticated serenity and premium legacy travel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_K1WoMvvufXQuiN4PnusVRwntrwvWg7MK2JnwEuM4aExsULFHnjCFR0LzKGHwdqEgCC6OuLJ1d3imh9qYHWsAvb1aGMaRnTjMy8nx0Udnp3NJiiC6VLmXx_P7Im3eSeDf6hQhuC1NPTCHAciKklBL1VhFPg8vS6onz3UtckahVbSRS8C-5UVfkodewdpH8_igap6ecmsEV3xaAwfQTu-8qfX315hrydQvAqfaPZdcIXBN1ghXjUWdHCSROCZjrslIsLykEACIAa83')"></div>
+<div class="absolute inset-0 ring-1 ring-white/10 pointer-events-none"></div>
+</div>
+<div class="w-full md:w-1/2 space-y-stack-md">
+<span class="inline-block bg-accent-gold text-on-secondary-fixed font-label-caps text-label-caps px-3 py-1 rounded-full uppercase tracking-widest">Premium Collection</span>
+<h2 class="font-headline-md text-headline-md text-surface-light">Explore Our Signature Collection</h2>
+<p class="font-body-lg text-body-lg text-surface-variant leading-relaxed">
+                            For the discerning traveler, our Signature Collection offers unprecedented access to Africa's most exclusive landscapes. These journeys combine private aviation, master trackers, and ultra-luxury lodges to create a tapestry of unforgettable moments in the wild.
+                        </p>
+<button class="bg-transparent border-2 border-accent-gold text-accent-gold px-8 py-3 rounded-lg font-bold hover:bg-accent-gold hover:text-surface-dark transition-all duration-300">
+                            Explore Signature Packages
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter & Grid Section -->
+<section class="py-stack-lg bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<!-- Compact Filter Area -->
+<div class="flex justify-between items-center mb-stack-md border-b border-outline-variant/30 pb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Available Expeditions</h3>
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg font-medium hover:bg-surface-variant/30 transition-colors" id="filterBtn">
+<span class="material-symbols-outlined">filter_list</span>
+                            Filters
+                        </button>
+<!-- Filter Dropdown Panel -->
+<div class="filter-panel hidden absolute right-0 mt-2 w-80 bg-surface-container-lowest shadow-xl rounded-xl p-6 z-40 border border-outline-variant/20" id="filterPanel">
+<h4 class="font-headline-sm text-headline-sm mb-4">Refine Search</h4>
+<div class="space-y-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Destination</label>
+<select class="w-full rounded-lg border-outline-variant focus:ring-accent-teal focus:border-accent-teal text-body-sm">
+<option>All Destinations</option>
+<option>Tanzania</option>
+<option>Kenya</option>
+<option>Botswana</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Duration</label>
+<select class="w-full rounded-lg border-outline-variant focus:ring-accent-teal text-body-sm">
+<option>Any</option>
+<option>3-5 Days</option>
+<option>7-10 Days</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Group Size</label>
+<select class="w-full rounded-lg border-outline-variant focus:ring-accent-teal text-body-sm">
+<option>1-2</option>
+<option>4-6</option>
+<option>8+</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">Travel Style</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1 bg-primary-fixed/20 text-primary font-body-sm rounded-lg">Classic</button>
+<button class="px-3 py-1 bg-surface-variant text-on-surface-variant font-body-sm rounded-lg">Adventure</button>
+<button class="px-3 py-1 bg-surface-variant text-on-surface-variant font-body-sm rounded-lg">Family</button>
+</div>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-accent-teal text-white py-2 rounded-lg font-bold text-body-sm">Apply</button>
+<button class="flex-1 bg-surface-variant text-on-surface-variant py-2 rounded-lg font-bold text-body-sm">Reset</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Package Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A close-up high-resolution photo of a majestic lion walking through tall golden grass in the Ngorongoro Crater. The morning light is soft and directional, highlighting the textures of the lion's mane and the dew on the grass. The overall mood is powerful yet serene, maintaining a high-end editorial travel photography style with a natural color palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjUYFOWxxNPJ1J40o8o3UGfMzcBWpukcXI1sHP8NCq0DR0pyNTvglNC6krHvVitTeVUu92ew4cIlGfbG6lUH7mWwejASoqQ2T6bcjTjPdnHCAH5jbMiTFx8VnjzS45lbo10minnzFZ2ItiOMsz-WokeiJNBiu1Xt5RZLf83k7bbSSpCnvumpVmgMgO7OQTzil9s4gXQBxkCK9-nV2whzZAW5AFD0TxpFzrt7ambedADt26U_H-BNoOZbLkbDlN9OFl083ztDGYKLe_')"></div>
+<span class="absolute top-4 left-4 bg-accent-teal text-white font-label-caps text-[10px] px-2 py-1 rounded">BEST SELLER</span>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">TANZANIA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">4.9</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Serengeti Great Migration</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">Witness the world's most spectacular wildlife event as millions of wildebeest cross the Mara River.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$4,250</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">8 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A wide, atmospheric shot of the Okavango Delta in Botswana during the flood season. Crystal clear waterways wind through lush green reed beds under a bright blue sky. A traditional mokoro canoe is visible in the distance, creating a sense of peaceful exploration. The lighting is bright and airy, emphasizing the purity and life-sustaining nature of the water in a luxury travel context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwuPHPFYvdOFUDDTW00SY-DyRou9oCd8Hw_Klr383E8eJJ5nyJAbRuqc6_GrSZhbyiHIWyMc9OYLLu8J-jqqYRYdryFsT9nLUL6JLHlBOd0Q_3Y8Uu9o65WezMrF4jyacql5PEY7HqMV-asocIGu700IBI9CE26Mjqm4H68yBufNYurbEuc4IgRpv8iphwtUtOv_PDSsJlYBYZvzc-33Kqs_WIJHApqkXvvALVyTlGRZxqGI6qMW19lmLdysWj6mMZCCvJmFyJY2vj')"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">BOTSWANA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">4.8</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Okavango Delta Mokoro</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">Navigate the tranquil waterways of the Delta in a traditional dugout canoe for a unique perspective.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$3,890</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">6 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A dramatic mountain landscape of the Volcanoes National Park in Rwanda, with mist clinging to the dense green volcanic slopes. The scene is lush and mysterious, with deep greens and moody greys dominating the palette. The lighting is soft and diffused through the fog, evoking the intense and emotional experience of trekking for mountain gorillas in their natural habitat." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUt2Yq9ZTZ9Ck2_BtNdKr7tDTSh_GFITwul-QLHIUEDj-Z9m7zyMPUGy71dCi7nvkYXByikmS110AUhRvzC7a6hDPcDDHdN57VNU9HYgyzmkQ2dQPBAp6HBg1RyG0FEWEGOhUWcyBg0sAQeCBFX7t7nxN3bpLR0DERY_odGPB31ce7mag8l_qEs-TGMKulpM5F5Pmksw7giqF9zbmoAiZyVCG8xqun4S8esbfjEZbYXCyK3zIONCtlgPSIAz8kjT-gPeJlblFR4w3D')"></div>
+<span class="absolute top-4 left-4 bg-accent-gold text-on-secondary-fixed font-label-caps text-[10px] px-2 py-1 rounded">NEW EXPEDITION</span>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">RWANDA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">5.0</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Gorilla Trekking Rwanda</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">An intimate encounter with the mountain gorillas in the misty forests of Volcanoes National Park.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$5,100</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">5 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A vibrant landscape of the Maasai Mara in Kenya at midday. Several colorful Maasai warriors in traditional red shukas are seen in the distance against the backdrop of an open savannah dotted with wildebeest. The colors are bright and saturated, capturing the cultural heritage and biodiversity of the region in a high-key, modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFa0P_ac-Cuvqgi5car0C8y96lkTA5QHZKYwprxELlTl_fIZazEBajr-QDTeHA0bP--Vd1t2B5ZyI48j2xDCyg5MAsBj8i2Et26EITEz5UD5zh8chhpcCWE3swbNKAkxY5gBDDEJweO5VHzlslB4uldPrKZx1E_Tg9Z89_6L7cZ_scCzYxxyS_JTB5YOq_5JxNA3aMNVdVsBt-tdqNmKyagkJ68XLXEtrlc8wyijFQPe9uTh2jrb719H1NrflmJ4iskGQzCHf9VCHc')"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">KENYA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">4.7</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Maasai Mara Classic</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">A timeless safari experience focused on the big cats and traditional Maasai cultural interactions.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$3,200</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">7 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="The towering orange dunes of Sossusvlei in Namibia during the 'golden hour'. The sharp contrast between the bright orange sand and the deep blue shadows creates dramatic geometric shapes. A few dead camelthorn trees in Deadvlei add a stark, artistic element to the composition. The lighting is intense and low, creating a sense of vast, ancient solitude." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPkVXTi3y7yipcwVeFGb_0b0eqXW73xw-kMnc3w86no9tcCXvuhaKoXsdsybDj00B5BRiXc2Yrb_U0Rcjzk5P0req2Czq-FvEk_iTmIBlGz9Zw7jTjCVT_K-8fFi8cdj2v26v8588PK6f3iZzeKSTnPa7NpxikjwvF5DDjsSe_j7JmcPYEUDXIBjFukJUE2fpqCmhi8bnpdPXNf9mePu6bPEIH1qJcvLIoNlr61XEIHsp12Tz1X6ZzkY4hgqQFR018m47gxgBfVTtA')"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">NAMIBIA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">4.9</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Namib Desert Shadows</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">Explore the world's oldest desert and the surreal beauty of the Sossusvlei sand dunes.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$4,500</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">10 Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-light border border-outline-variant/30 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+<div class="relative h-64 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A majestic leopard lounging on a heavy branch of a large sausage tree in South Africa. The dappled sunlight through the leaves creates a beautiful pattern on the leopard's coat. The background is softly blurred green foliage, creating a shallow depth of field that emphasizes the predator. The image is sophisticated and intimate, focusing on the details of the animal." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD32WVYBpctpNJMjDs0-K68ucp1nfieWzVHGOmMuzsq0PyH3ezFoE9e_Zbu2tynbcghQsYOvzpo2ojPiqQSLrDRQPtEOhDwgWgCgI__K-dKZFElIqRzU2sOcUtezG-73q40VLAFFQDBc2WGJDFEFQBzRdKS4RcLyI0mgpCV1uz-2uBqTdTLCPnmJzAbW8flw23diNBCicOTS3kzKyqjpMl5n-tQ_9yS2Gy_eIPr7r-ltqvfBuaEXVCIFqpp0RaNDvhEAnkOltA8pCs1')"></div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-accent-teal">SOUTH AFRICA</span>
+<div class="flex items-center text-accent-gold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm ml-1">4.8</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Kruger Luxury Safari</h4>
+<p class="font-body-sm text-on-surface-variant mb-6 line-clamp-2">Immerse yourself in one of the world's largest game reserves with premium lodge stays.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/20">
+<div>
+<span class="block text-[10px] font-label-caps text-on-surface-variant">STARTING FROM</span>
+<span class="font-price-display text-price-display text-primary">$3,600</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-body-sm">6 Days</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-stack-lg flex justify-center"><nav aria-label="Pagination" class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:text-accent-teal transition-colors font-medium">
+<span class="material-symbols-outlined">chevron_left</span>
+        Previous
+    </button>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-accent-teal text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-variant/30 text-on-surface transition-colors font-medium">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-variant/30 text-on-surface transition-colors font-medium">3</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:text-accent-teal transition-colors font-medium">
+        Next
+        <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-dark pt-section-padding pb-gutter px-gutter flex flex-col items-center">
+<div class="max-w-container-max w-full grid grid-cols-1 md:grid-cols-4 gap-stack-lg mb-stack-lg text-surface-variant">
+<div class="col-span-1 md:col-span-2">
+<span class="font-display-lg text-display-lg text-surface-light mb-4 block">SERENGETI</span>
+<p class="font-body-md max-w-sm">Authentic African expeditions designed for the modern legacy. Trust in our decade of expertise in the wild.</p>
+</div>
+<div>
+<h5 class="text-surface-light font-bold mb-4 uppercase tracking-wider text-sm">Quick Links</h5>
+<ul class="space-y-2">
+<li><a class="hover:text-accent-gold transition-colors" href="#">Destinations</a></li>
+<li><a class="hover:text-accent-gold transition-colors" href="#">Special Offers</a></li>
+<li><a class="hover:text-accent-gold transition-colors" href="#">Travel Guide</a></li>
+<li><a class="hover:text-accent-gold transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-surface-light font-bold mb-4 uppercase tracking-wider text-sm">Contact</h5>
+<ul class="space-y-2 font-body-sm">
+<li>Arusha, Tanzania</li>
+<li>+255 123 456 789</li>
+<li>expeditions@serengeti.com</li>
+</ul>
+</div>
+</div>
+<div class="w-full pt-gutter border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-sm text-surface-variant">© 2024 Serengeti Expeditions. All rights reserved.</p>
+<div class="flex gap-stack-md">
+<a class="text-surface-variant hover:text-surface-light transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-surface-light transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Dropdown Toggle for Filters
+        const filterBtn = document.getElementById('filterBtn');
+        const filterPanel = document.getElementById('filterPanel');
+
+        filterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filterPanel.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!filterPanel.contains(e.target) && e.target !== filterBtn) {
+                filterPanel.classList.add('hidden');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-surface-dark');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('bg-surface-dark');
+                header.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body></html>
