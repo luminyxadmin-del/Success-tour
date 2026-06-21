@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, ArrowRight } from "lucide-react";
 import type { TourPackage } from "@/types";
 import { formatPrice } from "@/utils/format";
 import { cn } from "@/utils/cn";
+import { cloudinaryOptimize } from "@/utils/cloudinary";
 
 // Visual-only: these slugs receive a "Best Seller" badge
 const BEST_SELLER_SLUGS = new Set(["masai-mara-explorer", "classic-kenya-safari"]);
 
 export default function PackageCard({ pkg, className }: { pkg: TourPackage; className?: string }) {
   const isBestSeller = BEST_SELLER_SLUGS.has(pkg.slug);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
     <Link
@@ -20,12 +23,14 @@ export default function PackageCard({ pkg, className }: { pkg: TourPackage; clas
       )}
     >
       {/* ── Image ── */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className={cn("relative aspect-[16/10] overflow-hidden", !imgLoaded && "card-shimmer")}>
         <img
-          src={pkg.image}
+          src={cloudinaryOptimize(pkg.image, 800)}
           alt={pkg.name}
           loading="lazy"
+          onLoad={() => setImgLoaded(true)}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s ease, transform 0.5s ease" }}
         />
         {isBestSeller && (
           <span className="absolute left-3 top-3 rounded-full bg-emerald-600 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">

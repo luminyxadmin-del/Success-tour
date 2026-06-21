@@ -1,15 +1,24 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import type { Destination } from "@/types";
 import { getDestinationHero } from "@/data/destinationImages";
+import { cloudinaryOptimize } from "@/utils/cloudinary";
 
 export default function DestinationCard({ destination, large }: { destination: Destination; large?: boolean }) {
   const heroImage = getDestinationHero(destination.slug, destination.image);
+  const [imgLoaded, setImgLoaded] = useState(false);
   return (
     <Link to={`/destinations/${destination.slug}`}
-      className={`group relative block h-full overflow-hidden rounded-lg shadow-soft ${large ? "aspect-[4/5]" : ""}`}>
-      <img src={heroImage} alt={destination.name} loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      className={`group relative block h-full overflow-hidden rounded-lg shadow-soft ${large ? "aspect-[4/5]" : ""} ${!imgLoaded ? "card-shimmer" : ""}`}>
+      <img
+        src={cloudinaryOptimize(heroImage, 800)}
+        alt={destination.name}
+        loading="lazy"
+        onLoad={() => setImgLoaded(true)}
+        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        style={{ opacity: imgLoaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-5">
         <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-accent">

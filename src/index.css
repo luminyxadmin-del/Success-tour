@@ -48,7 +48,7 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Gallery skeleton shimmer */
+/* Skeleton shimmer — shared keyframe used by both .gallery-shimmer and .card-shimmer */
 @keyframes gallery-shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
@@ -58,5 +58,11 @@
   background-size: 200% 100%;
   animation: gallery-shimmer 1.5s ease-in-out infinite;
   border-radius: 12px;
+}
+/* Card-level shimmer: applied to the image container while the img is loading */
+.card-shimmer {
+  background: linear-gradient(90deg, #e0d9d0 25%, #f0ebe4 50%, #e0d9d0 75%);
+  background-size: 200% 100%;
+  animation: gallery-shimmer 1.5s ease-in-out infinite;
 }
 

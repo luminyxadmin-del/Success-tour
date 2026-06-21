@@ -61,6 +61,18 @@ function buildTabImages(slug: string): GalleryImage[] {
   }));
 }
 
+// ─── Cloudinary URL optimizer ─────────────────────────────────────────────────
+// Inserts w_{width},f_auto,q_auto,c_fill into Cloudinary URLs.
+// f_auto → WebP for Chrome/Edge/Firefox, AVIF where supported, JPEG fallback.
+// q_auto → Cloudinary picks the best quality/size tradeoff automatically.
+// c_fill → crops to fill the requested dimensions while preserving aspect ratio.
+// Non-Cloudinary URLs (or already-transformed ones) pass through unchanged.
+function cloudinaryOptimize(url: string, width = 600): string {
+  if (!url.includes("res.cloudinary.com")) return url;
+  if (url.includes("/upload/w_")) return url; // already transformed
+  return url.replace("/upload/", `/upload/w_${width},f_auto,q_auto,c_fill/`);
+}
+
 // ─── tab / pagination config ──────────────────────────────────────────────────
 
 interface Tab { slug: string; label: string }
@@ -107,14 +119,16 @@ export default function GalleryPage() {
     setLoadedIds(new Set());
   }, [activeSlug, currentPage]);
 
-  // Inject <link rel="preload"> for the first 6 images of the active tab
+  // Inject <link rel="preload"> for the first 6 images of the active tab.
+  // URLs must match exactly what the <img> src will be (optimized Cloudinary URL)
+  // so the browser can serve the preloaded asset from cache without a second fetch.
   useEffect(() => {
     const added: HTMLLinkElement[] = [];
     allImages.slice(0, 6).forEach((img) => {
       const link = document.createElement("link");
       link.rel  = "preload";
       link.as   = "image";
-      link.href = img.src;
+      link.href = cloudinaryOptimize(img.src, 600);
       link.setAttribute("data-gallery-preload", "true");
       document.head.appendChild(link);
       added.push(link);
@@ -122,7 +136,7 @@ export default function GalleryPage() {
     return () => {
       added.forEach((el) => el.remove());
     };
-  }, [allImages]); // allImages changes when activeSlug changes
+  }, [allImages]);
 
   function handleTabChange(slug: string) {
     if (slug === activeSlug) return;
@@ -233,9 +247,12 @@ export default function GalleryPage() {
                         }}
                       >
                         <img
-                          src={img.src}
+                          src={cloudinaryOptimize(img.src, 600)}
                           alt={img.caption}
-                          loading="lazy"
+                          loading={i < 3 ? "eager" : "lazy"}
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                          // @ts-ignore — fetchPriority is valid HTML but missing from older @types/react
+                          fetchPriority={i < 3 ? "high" : "auto"}
                           onLoad={() => handleImageLoad(img.id)}
                           className="transition-transform duration-700 group-hover:scale-[1.04]"
                           style={{

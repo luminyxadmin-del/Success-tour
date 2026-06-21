@@ -24,6 +24,7 @@ import { blogs } from "@/data/blogs";
 import { testimonials } from "@/data/testimonials";
 import { stats } from "@/data/stats";
 import { galleryImages } from "@/data/gallery";
+import { cloudinaryOptimize } from "@/utils/cloudinary";
 
 const whyChoose = [
   { icon: ShieldCheck, title: "17 Years of Expertise", text: "Nearly two decades crafting seamless, safe East Africa journeys for travellers worldwide." },
@@ -237,7 +238,7 @@ export default function HomePage() {
             {experiences.map((e, i) => (
               <Reveal key={e.title} delay={i * 0.08} className="aspect-[3/4]">
                 <div className="group relative h-full overflow-hidden rounded-lg">
-                  <img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={cloudinaryOptimize(e.image, 800)} alt={e.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <h3 className="font-display text-xl font-bold text-white">{e.title}</h3>
@@ -292,7 +293,7 @@ export default function HomePage() {
             {galleryPreview.map((g, i) => (
               <Reveal key={g.id} delay={i * 0.04} className="aspect-[4/3]">
                 <Link to="/gallery" className="group block h-full overflow-hidden rounded-lg">
-                  <img src={g.src} alt={g.caption} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img src={cloudinaryOptimize(g.src, 800)} alt={g.caption} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </Link>
               </Reveal>
             ))}
