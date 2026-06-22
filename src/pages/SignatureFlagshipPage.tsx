@@ -14,6 +14,7 @@ import { Stagger, StaggerItem } from "@/components/common/Reveal";
 import InquiryForm from "@/components/forms/InquiryForm";
 import NotFoundPage from "./NotFoundPage";
 import { signatureFlagships, getSignatureFlagship } from "@/data/signature";
+import { cloudinaryOptimize } from "@/utils/cloudinary";
 
 const tierColors: Record<string, string> = {
   Luxury: "bg-accent/10 text-accent border-accent/30",
@@ -46,7 +47,7 @@ export default function SignatureFlagshipPage() {
       {/* HERO */}
       <section className="relative flex min-h-[65vh] items-end overflow-hidden">
         <div className="absolute inset-0">
-          <img src={flagship.image} alt={flagship.name} className="h-full w-full object-cover" />
+          <img src={cloudinaryOptimize(flagship.image, 1400)} alt={flagship.name} className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/55 to-primary/25" />
         </div>
         <Container className="relative z-10 pb-14 pt-36">
@@ -120,7 +121,7 @@ export default function SignatureFlagshipPage() {
               <Reveal>
                 <div className="overflow-hidden rounded-xl">
                   <img
-                    src={flagship.gallery[activeImg]}
+                    src={cloudinaryOptimize(flagship.gallery[activeImg], 1200)}
                     alt={flagship.name}
                     className="aspect-[16/9] w-full object-cover"
                   />
@@ -134,7 +135,7 @@ export default function SignatureFlagshipPage() {
                         activeImg === i ? "ring-secondary" : "ring-transparent"
                       }`}
                     >
-                      <img src={g} alt="" className="aspect-square w-full object-cover" />
+                      <img src={cloudinaryOptimize(g, 200)} alt="" className="aspect-square w-full object-cover" />
                     </button>
                   ))}
                 </div>
