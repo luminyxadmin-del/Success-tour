@@ -1,5 +1,4 @@
 import type { BlogPost } from "@/types";
-import { IMG } from "./images";
 import { slugify } from "@/utils/slugify";
 
 interface Seed {
@@ -13,7 +12,7 @@ const seeds: Seed[] = [
     title: "The Best Time to Visit Kenya for Safari",
     description: "Migration, calving, green season or dry — here's how to choose the perfect month for your Kenyan adventure.",
     author: "Amani Wanjiru", authorRole: "Head of Safari Experiences", date: "2026-05-18", readTime: "7 min read",
-    category: "Travel Tips", image: IMG.savanna, tags: ["Planning", "Safari", "Seasons"],
+    category: "Travel Tips", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781978378/herd-impalas-aepyceros-melampus-grassy-field-masai-mara-kenya_bs6icd.jpg", tags: ["Planning", "Safari", "Seasons"],
     content: [
       "Kenya rewards visitors year-round, but the experience shifts dramatically with the seasons. Understanding the rhythm of the rains, the migration and the calving season helps you match your trip to the wildlife moments that matter most to you.",
       "The long dry season from June to October is the classic safari window. Vegetation thins, wildlife concentrates around water, and from July the Great Migration thunders into the Maasai Mara — the single most dramatic time to witness river crossings.",
@@ -25,7 +24,7 @@ const seeds: Seed[] = [
     title: "Witnessing the Great Migration: A Complete Guide",
     description: "Everything you need to know about the wildebeest migration and how to see the legendary Mara River crossings.",
     author: "David Kiprop", authorRole: "Senior Safari Guide", date: "2026-05-02", readTime: "9 min read",
-    category: "Wildlife", image: IMG.wildebeest, tags: ["Migration", "Maasai Mara", "Wildlife"],
+    category: "Wildlife", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980695/zebras-wildebeest-migration-wildlife-animals-mammals-savanna-grassland-maasai-mara-national-game-res_ewjapy.webp", tags: ["Migration", "Maasai Mara", "Wildlife"],
     content: [
       "Often called the greatest wildlife show on Earth, the Great Migration sees over 1.5 million wildebeest, along with zebra and gazelle, move in a vast clockwise circuit between the Serengeti and the Maasai Mara in search of fresh grazing.",
       "The herds typically arrive in the Mara between July and October. The headline act is the river crossing, where columns of wildebeest brave crocodile-filled waters in chaotic, heart-stopping surges. Timing is unpredictable — patience and an expert guide are everything.",
@@ -37,7 +36,7 @@ const seeds: Seed[] = [
     title: "Bush to Beach: The Perfect Kenya Itinerary",
     description: "Why combining a Maasai Mara safari with the Indian Ocean coast is the ultimate Kenyan journey.",
     author: "Grace Achieng", authorRole: "Travel Designer", date: "2026-04-21", readTime: "6 min read",
-    category: "Itineraries", image: IMG.beach, tags: ["Beach", "Safari", "Honeymoon"],
+    category: "Itineraries", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781979556/sea-with-seagulls-flying-it-with-greenery-wall_jal770.webp", tags: ["Beach", "Safari", "Honeymoon"],
     content: [
       "There is a reason the bush-to-beach itinerary is Kenya's most beloved combination. After the adrenaline and early starts of safari, the warm Indian Ocean is the perfect place to decompress and reflect.",
       "A typical journey spends three to four nights on safari — usually the Maasai Mara or Amboseli — before a short flight to the coast at Diani, Watamu or Lamu for three or more nights of barefoot relaxation.",
@@ -49,7 +48,7 @@ const seeds: Seed[] = [
     title: "Big Five Photography: Tips from Our Guides",
     description: "Field-tested advice for capturing lions, leopards, elephants, rhino and buffalo like a pro.",
     author: "Samuel Otieno", authorRole: "Photographic Guide", date: "2026-04-09", readTime: "8 min read",
-    category: "Photography", image: IMG.lion, tags: ["Photography", "Big Five", "Tips"],
+    category: "Photography", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980217/beautiful-lion-with-safari-car-background-kenya-africa_p6xlbg.jpg", tags: ["Photography", "Big Five", "Tips"],
     content: [
       "Great wildlife photography is less about expensive gear and more about light, patience and understanding animal behaviour. Our photographic guides share the fundamentals that make the difference.",
       "Shoot in the golden hours just after dawn and before dusk, when low light flatters the savanna and animals are most active. Get low — eye-level with your subject creates intimacy and impact.",
@@ -61,7 +60,7 @@ const seeds: Seed[] = [
     title: "Responsible Tourism: How Your Safari Protects Kenya",
     description: "How well-planned travel funds conservation and supports the communities who safeguard Kenya's wildlife.",
     author: "Faith Njeri", authorRole: "Sustainability Lead", date: "2026-03-28", readTime: "7 min read",
-    category: "Conservation", image: IMG.elephants, tags: ["Conservation", "Community", "Sustainability"],
+    category: "Conservation", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781981146/closeup-shot-elephants-standing-near-lake-sunset_tfsdei.jpg", tags: ["Conservation", "Community", "Sustainability"],
     content: [
       "Tourism is one of the most powerful forces for conservation in Kenya. Park fees, conservancy leases and community partnerships give wildlife a tangible economic value — and a reason to be protected.",
       "Private conservancies in Laikipia, the Mara and beyond pay local landowners to keep their land open for wildlife, directly funding schools, clinics and ranger salaries.",
@@ -73,7 +72,7 @@ const seeds: Seed[] = [
     title: "A First-Timer's Guide to Kenyan Safari Etiquette",
     description: "What to wear, how to behave at sightings and the unwritten rules of a respectful, rewarding safari.",
     author: "David Kiprop", authorRole: "Senior Safari Guide", date: "2026-03-15", readTime: "5 min read",
-    category: "Travel Tips", image: IMG.safariJeep, tags: ["First Safari", "Etiquette", "Planning"],
+    category: "Travel Tips", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980993/animal-watching-wild-african-safari-group-female-impala-massai-mara_naaiqu.webp", tags: ["First Safari", "Etiquette", "Planning"],
     content: [
       "A few simple courtesies make every safari safer, calmer and more rewarding — for you, your fellow travellers and the wildlife.",
       "Wear neutral colours, keep your voice low at sightings and never stand up or hang out of the vehicle. Always follow your guide's instructions: they read the bush far better than any visitor.",
@@ -85,7 +84,7 @@ const seeds: Seed[] = [
     title: "Meet the Maasai: Culture on the Plains",
     description: "An introduction to the proud pastoralist people whose stewardship has shaped the Mara for centuries.",
     author: "Grace Achieng", authorRole: "Travel Designer", date: "2026-03-01", readTime: "6 min read",
-    category: "Culture", image: IMG.acaciaSunset, tags: ["Culture", "Maasai", "Community"],
+    category: "Culture", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781978744/giraffe-acacia-trees-with-mount-kilimanjaro-background-beautiful-african-landscape-with-savannah-animals-mountains_ipvpmz.webp", tags: ["Culture", "Maasai", "Community"],
     content: [
       "No visit to southern Kenya is complete without an encounter with the Maasai, whose vivid red shukas and deep connection to the land are inseparable from the Mara's identity.",
       "Traditionally semi-nomadic cattle herders, the Maasai have long coexisted with wildlife, and today many communities are central partners in conservancy conservation.",
@@ -97,7 +96,7 @@ const seeds: Seed[] = [
     title: "Diani vs Watamu vs Lamu: Choosing Your Coast",
     description: "A side-by-side guide to Kenya's three most beloved beach destinations.",
     author: "Amani Wanjiru", authorRole: "Head of Safari Experiences", date: "2026-02-18", readTime: "7 min read",
-    category: "Itineraries", image: IMG.beachAerial, tags: ["Beach", "Coast", "Planning"],
+    category: "Itineraries", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980546/flock-pink-african-flamingos-walking-around-blue-lagoon-background-bright-sky-sunny-day_rkw8w2.jpg", tags: ["Beach", "Coast", "Planning"],
     content: [
       "Kenya's coastline offers three distinct flavours of paradise, each suited to a different kind of traveller.",
       "Diani is the all-rounder — lively, well-serviced and home to world-class watersports and resorts. It suits families, honeymooners and first-timers who want plenty to do.",
@@ -109,7 +108,7 @@ const seeds: Seed[] = [
     title: "Packing for Safari: The Essential Checklist",
     description: "Exactly what to bring (and what to leave at home) for a comfortable, hassle-free safari.",
     author: "Faith Njeri", authorRole: "Sustainability Lead", date: "2026-02-05", readTime: "5 min read",
-    category: "Travel Tips", image: IMG.lodgeTent, tags: ["Packing", "Planning", "First Safari"],
+    category: "Travel Tips", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980234/giraffe-is-standing-grass-with-car-background_p74hfi.jpg", tags: ["Packing", "Planning", "First Safari"],
     content: [
       "Packing smart for safari means thinking in layers, neutrals and soft luggage. Here's the short version of our tried-and-tested list.",
       "Clothing: lightweight neutral shirts and trousers, a warm fleece for chilly mornings, a waterproof layer, a wide-brimmed hat and comfortable closed shoes.",
@@ -121,7 +120,7 @@ const seeds: Seed[] = [
     title: "Family Safaris: Making Memories with Kids",
     description: "How to plan a safari that delights children and keeps parents relaxed from start to finish.",
     author: "Grace Achieng", authorRole: "Travel Designer", date: "2026-01-24", readTime: "6 min read",
-    category: "Family Travel", image: IMG.elephantClose, tags: ["Family", "Kids", "Planning"],
+    category: "Family Travel", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980074/tourists-safari-jeeps-watching-taking-photos-big-wild-elephant-crossing-dirt-road-amboseli-national-park-kenya-panorama_hkmhhl.webp", tags: ["Family", "Kids", "Planning"],
     content: [
       "A family safari can be one of the most bonding experiences you'll ever share — with a little thoughtful planning to keep everyone comfortable and engaged.",
       "Choose family-friendly lodges with pools, flexible meal times and interconnecting rooms, and build in downtime so younger children don't tire of long drives.",
@@ -133,7 +132,7 @@ const seeds: Seed[] = [
     title: "The Magic of a Hot-Air Balloon Safari",
     description: "Drifting silently over the Mara at dawn is a bucket-list experience like no other. Here's what to expect.",
     author: "Samuel Otieno", authorRole: "Photographic Guide", date: "2026-01-10", readTime: "5 min read",
-    category: "Experiences", image: IMG.acaciaSunset, tags: ["Balloon", "Maasai Mara", "Experiences"],
+    category: "Experiences", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781978799/zebras-field-covered-grass-sunlight-sunset_t6cl7t.webp", tags: ["Balloon", "Maasai Mara", "Experiences"],
     content: [
       "There are few experiences as serene and surreal as floating over the Maasai Mara as the sun rises, the plains unfurling beneath you in soft golden light.",
       "Flights launch before dawn and last around an hour, drifting low over rivers and herds before climbing for sweeping panoramic views of the savanna.",
@@ -145,7 +144,7 @@ const seeds: Seed[] = [
     title: "Honeymoon in Kenya: Romance in the Wild",
     description: "From candle-lit bush dinners to private plunge pools, why Kenya is a peerless honeymoon destination.",
     author: "Amani Wanjiru", authorRole: "Head of Safari Experiences", date: "2025-12-20", readTime: "6 min read",
-    category: "Honeymoon", image: IMG.beachResort, tags: ["Honeymoon", "Romance", "Luxury"],
+    category: "Honeymoon", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980563/beautiful-kilimanjaro-mountain-zebras-kenya-amboseli-national-park-africa_ekndxu.webp", tags: ["Honeymoon", "Romance", "Luxury"],
     content: [
       "Kenya was made for honeymoons — a place where adventure and indulgence meet under enormous skies.",
       "Picture private game drives followed by sundowners on a ridge, candle-lit dinners in the bush and nights in a tented suite with your own deck over the plains.",
@@ -157,7 +156,7 @@ const seeds: Seed[] = [
     title: "Conservancies Explained: Beyond the National Parks",
     description: "Why private and community conservancies often deliver the most exclusive safari experiences.",
     author: "Faith Njeri", authorRole: "Sustainability Lead", date: "2025-12-06", readTime: "7 min read",
-    category: "Conservation", image: IMG.giraffes, tags: ["Conservancies", "Conservation", "Luxury"],
+    category: "Conservation", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781979323/animals-wild-reticulated-giraffes-samburu-national-reserve-north-kenya_yv7flo.webp", tags: ["Conservancies", "Conservation", "Luxury"],
     content: [
       "While national parks protect Kenya's most famous landscapes, the country's private and community conservancies offer something special: exclusivity, flexibility and tangible conservation impact.",
       "With limited vehicle numbers and the freedom to walk, drive at night and go off-road, conservancies deliver a more intimate, immersive safari than busy park hotspots.",
@@ -181,7 +180,7 @@ const seeds: Seed[] = [
     title: "Why Kenya Should Top Your 2026 Travel List",
     description: "Iconic wildlife, stunning beaches, rich culture and world-class hospitality — Kenya has it all.",
     author: "Grace Achieng", authorRole: "Travel Designer", date: "2025-11-08", readTime: "6 min read",
-    category: "Inspiration", image: IMG.savanna, tags: ["Inspiration", "Kenya", "Planning"],
+    category: "Inspiration", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781980933/safari-concept-safari-car-with-wildebeests-african-savannah-masai-mara-national-park-kenya_jlcxit.webp", tags: ["Inspiration", "Kenya", "Planning"],
     content: [
       "Few destinations pack as much variety into a single country as Kenya. In one trip you can track the Big Five, summit an equatorial mountain, dive a coral reef and immerse yourself in living culture.",
       "The wildlife alone is reason enough — the Great Migration, vast elephant herds beneath Kilimanjaro and some of the highest predator densities on Earth.",
