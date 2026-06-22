@@ -169,7 +169,7 @@ const seeds: Seed[] = [
     title: "Climbing Mount Kenya: What to Expect",
     description: "A trekker's guide to reaching Point Lenana on Africa's second-highest mountain.",
     author: "David Kiprop", authorRole: "Senior Safari Guide", date: "2025-11-22", readTime: "8 min read",
-    category: "Adventure", image: IMG.kilimanjaro, tags: ["Trekking", "Mount Kenya", "Adventure"],
+    category: "Adventure", image: "https://res.cloudinary.com/dbvtxf4pa/image/upload/v1781979730/view-from-sani-pass-back-towards-south-african-bor-2026-03-16-06-12-07-utc_a1lc1a.jpg", tags: ["Trekking", "Mount Kenya", "Adventure"],
     content: [
       "Mount Kenya is a magnificent and often-overlooked trekking destination, its trekkers' summit, Point Lenana (4,985m), reachable without technical climbing skills.",
       "The classic route ascends the gentle Sirimon trail and descends the dramatic Chogoria, passing through bamboo forest, alpine moorland, glacial tarns and otherworldly giant lobelias.",
