@@ -50,7 +50,7 @@ export default function Navbar() {
 
         <ul className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
-            <li key={l.to} className="relative"
+            <li key={l.to} className={l.mega ? "" : "relative"}
               onMouseEnter={() => l.mega && setMegaOpen(true)}
               onMouseLeave={() => l.mega && setMegaOpen(false)}>
               <NavLink to={l.to}

@@ -11,9 +11,9 @@ export default function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 10, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 10, x: "-50%" }}
       transition={{ duration: 0.2 }}
-      className="absolute left-1/2 top-full z-50 mt-3 w-[min(980px,92vw)] -translate-x-1/2 overflow-hidden rounded-lg border border-sand-200 bg-white shadow-lift"
+      className="absolute left-1/2 top-[72px] z-50 mt-3 w-[min(980px,92vw)] overflow-hidden rounded-lg border border-sand-200 bg-white shadow-lift"
     >
       <div className="grid grid-cols-1 md:grid-cols-6">
         <div className="col-span-4 p-6">
