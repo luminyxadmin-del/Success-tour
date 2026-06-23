@@ -13,11 +13,13 @@ import Page from "@/components/common/Page";
 import SEO from "@/seo/SEO";
 import Container from "@/components/ui/Container";
 import PackageCard from "@/components/cards/PackageCard";
-import { packages } from "@/data/packages";
-import { destinations } from "@/data/destinations";
+import { packages as localPackages } from "@/data/packages";
+import { destinations as localDestinations } from "@/data/destinations";
 import { IMG } from "@/data/images";
 import { cn } from "@/utils/cn";
 import type { TripType } from "@/types";
+import { fetchPackages, fetchDestinations } from "@/lib/api";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
 
 // Location names as they appear in p.locations — ordered to match the search bar
 const featuredDestinations = [
@@ -33,7 +35,7 @@ const TRIP_TYPES: TripType[] = ["Safari", "Beach", "Adventure", "Family", "Honey
 
 /** Resolves a destination slug from the URL to the location name used in p.locations */
 function slugToLocationName(slug: string): string {
-  const d = destinations.find((dest) => dest.slug === slug);
+  const d = localDestinations.find((dest) => dest.slug === slug);
   if (!d) return "";
   return d.routeKeyword ?? d.name;
 }
@@ -64,6 +66,8 @@ const sortOptions = [
 const PER_PAGE = 9;
 
 export default function PackagesPage() {
+  const { data: packages }     = useSupabaseData(fetchPackages,     localPackages);
+  const { data: destinations } = useSupabaseData(fetchDestinations, localDestinations);
   const [searchParams] = useSearchParams();
 
   const [destination, setDestination] = useState(

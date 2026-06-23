@@ -1,3 +1,4 @@
+
 -- ============================================================
 -- Luminyx Travel Kenya — Supabase Schema
 -- ============================================================
@@ -54,22 +55,21 @@ comment on table public.admin_profiles is
 -- ────────────────────────────────────────────────────────────
 
 -- 3a. Quote Requests
-create table public.quote_submissions (
-  id            uuid primary key default uuid_generate_v4(),
-  name          text    not null,
-  email         text    not null,
-  phone         text    not null,
-  country       text    not null,
-  travelers          integer not null check (travelers >= 1),
-  travel_start_date  date    not null,
-  travel_end_date    date    not null,
-  destination        text    not null,
-  budget        budget_range not null,
-  message       text,
-  status        submission_status not null default 'new',
-  admin_notes   text,
-  submitted_at  timestamptz not null default now(),
-  updated_at    timestamptz not null default now()
+create table public.quote_requests (
+  id                uuid primary key default uuid_generate_v4(),
+  name              text    not null,
+  email             text    not null,
+  package_name      text    not null,
+  travelers         integer not null check (travelers >= 1),
+  travel_start_date date    not null,
+  travel_end_date   date    not null,
+  budget_range      text    not null,
+  custom_budget     text,
+  message           text,
+  status            submission_status not null default 'new',
+  admin_notes       text,
+  submitted_at      timestamptz not null default now(),
+  updated_at        timestamptz not null default now()
 );
 
 -- 3b. Package Inquiries
@@ -297,7 +297,7 @@ declare
   t text;
 begin
   foreach t in array array[
-    'quote_submissions', 'inquiry_submissions', 'contact_submissions',
+    'quote_requests', 'inquiry_submissions', 'contact_submissions',
     'destinations', 'packages', 'services', 'blog_posts',
     'testimonials', 'team_members', 'faqs', 'site_stats'
   ]
@@ -318,9 +318,9 @@ $$;
 -- ────────────────────────────────────────────────────────────
 
 -- Submissions — common filter combos
-create index idx_quotes_status       on public.quote_submissions      (status);
-create index idx_quotes_submitted    on public.quote_submissions      (submitted_at desc);
-create index idx_quotes_email        on public.quote_submissions      (email);
+create index idx_quotes_status       on public.quote_requests         (status);
+create index idx_quotes_submitted    on public.quote_requests         (submitted_at desc);
+create index idx_quotes_email        on public.quote_requests         (email);
 
 create index idx_inquiries_status    on public.inquiry_submissions    (status);
 create index idx_inquiries_submitted on public.inquiry_submissions    (submitted_at desc);
@@ -362,7 +362,7 @@ create or replace view public.all_submissions as
     destination as context_label,
     status,
     submitted_at
-  from public.quote_submissions
+  from public.quote_requests
   union all
   select
     id,
@@ -417,13 +417,13 @@ $$;
 
 -- ── Submissions: public can INSERT, only admins can SELECT/UPDATE/DELETE ──
 
-alter table public.quote_submissions      enable row level security;
+alter table public.quote_requests         enable row level security;
 alter table public.inquiry_submissions    enable row level security;
 alter table public.contact_submissions    enable row level security;
 
 -- Anyone (including anonymous visitors) can submit
 create policy "public_insert_quotes"
-  on public.quote_submissions for insert
+  on public.quote_requests for insert
   to anon, authenticated
   with check (true);
 
@@ -439,17 +439,17 @@ create policy "public_insert_contacts"
 
 -- Only admins can read/update/delete
 create policy "admin_read_quotes"
-  on public.quote_submissions for select
+  on public.quote_requests for select
   to authenticated
   using (public.is_admin());
 
 create policy "admin_update_quotes"
-  on public.quote_submissions for update
+  on public.quote_requests for update
   to authenticated
   using (public.is_admin());
 
 create policy "admin_delete_quotes"
-  on public.quote_submissions for delete
+  on public.quote_requests for delete
   to authenticated
   using (public.is_admin());
 
@@ -643,19 +643,19 @@ insert into public.site_stats (label, value, suffix, sort_order) values
 -- Migration 001: split travel_date into travel_start_date + travel_end_date
 -- Run this block once in Supabase Dashboard → SQL Editor
 
-alter table public.quote_submissions
+alter table public.quote_requests
   rename column travel_date to travel_start_date;
 
-alter table public.quote_submissions
+alter table public.quote_requests
   add column travel_end_date date;
 
 -- Backfill existing rows so end = start
-update public.quote_submissions
+update public.quote_requests
   set travel_end_date = travel_start_date
   where travel_end_date is null;
 
 -- Now enforce not-null on the new column
-alter table public.quote_submissions
+alter table public.quote_requests
   alter column travel_end_date set not null;
 
 

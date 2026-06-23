@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Page from "@/components/common/Page";
 import SEO from "@/seo/SEO";
 import PageHero from "@/components/common/PageHero";
@@ -6,16 +7,18 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal, { Stagger, StaggerItem } from "@/components/common/Reveal";
 import DestinationCard from "@/components/cards/DestinationCard";
 import CTABanner from "@/components/common/CTABanner";
-import { destinations } from "@/data/destinations";
+import { destinations as localDestinations } from "@/data/destinations";
 import { isDestinationInRoutes } from "@/data/packages";
 import { IMG } from "@/data/images";
 import { MapPin, CalendarRange } from "lucide-react";
-
-const activeDestinations = destinations.filter((d) =>
-  isDestinationInRoutes(d.routeKeyword ?? d.name)
-);
+import { fetchDestinations } from "@/lib/api";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
 
 export default function DestinationsPage() {
+  const { data: destinations } = useSupabaseData(fetchDestinations, localDestinations);
+  const activeDestinations = destinations.filter((d) =>
+    isDestinationInRoutes(d.routeKeyword ?? d.name)
+  );
   return (
     <Page>
       <SEO
