@@ -10,19 +10,15 @@ import Button from "@/components/ui/Button";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal, { Stagger, StaggerItem } from "@/components/common/Reveal";
 import PackageSearch from "@/components/common/PackageSearch";
-import StatCounter from "@/components/common/StatCounter";
 import CTABanner from "@/components/common/CTABanner";
 import PackageCard from "@/components/cards/PackageCard";
 import DestinationCard from "@/components/cards/DestinationCard";
 import BlogCard from "@/components/cards/BlogCard";
-import TestimonialCard from "@/components/cards/TestimonialCard";
 
 import { destinations } from "@/data/destinations";
 import { getDestinationHero } from "@/data/destinationImages";
 import { packages, isDestinationInRoutes } from "@/data/packages";
 import { blogs } from "@/data/blogs";
-import { testimonials } from "@/data/testimonials";
-import { stats } from "@/data/stats";
 import { galleryImages } from "@/data/gallery";
 import { cloudinaryOptimize } from "@/utils/cloudinary";
 
@@ -241,35 +237,6 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </Container>
-      </section>
-
-      {/* STATISTICS */}
-      <section className="bg-white py-6 lg:py-8">
-        <Container>
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((s) => (
-              <StatCounter key={s.label} stat={s} />
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="bg-sand py-8 lg:py-10">
-        <Container>
-          <SectionHeading
-            align="center"
-            eyebrow="Guest stories"
-            title="Loved by travellers worldwide"
-            subtitle="Don't just take our word for it — here's what our guests say after travelling with us."
-            className="mb-12"
-          />
-          <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.slice(0, 6).map((t) => (
-              <StaggerItem key={t.id}><TestimonialCard t={t} /></StaggerItem>
-            ))}
-          </Stagger>
         </Container>
       </section>
 
