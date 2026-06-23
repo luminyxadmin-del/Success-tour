@@ -10,6 +10,7 @@ import { Stagger, StaggerItem } from "@/components/common/Reveal";
 import { blogs, blogCategories } from "@/data/blogs";
 import { IMG } from "@/data/images";
 import { cn } from "@/utils/cn";
+import { fetchBlogs } from "@/lib/api";
 
 const PAGE_SIZE = 6;
 
@@ -30,12 +31,17 @@ const fetchBlogPosts = async (category: string, signal: AbortSignal) => {
   if (signal.aborted) {
     throw new DOMException("Request aborted", "AbortError");
   }
-  await Promise.resolve();
-  if (signal.aborted) {
-    throw new DOMException("Request aborted", "AbortError");
+  try {
+    const result = await fetchBlogs(category);
+    if (signal.aborted) throw new DOMException("Request aborted", "AbortError");
+    if (result.length > 0) return result;
+  } catch (e) {
+    if ((e as Error).name === "AbortError") throw e;
+    // fall through to local fallback
   }
-  const filtered = category === "All" ? blogs : blogs.filter((post) => post.category === category);
-  return filtered;
+  // Local fallback
+  if (signal.aborted) throw new DOMException("Request aborted", "AbortError");
+  return category === "All" ? blogs : blogs.filter((post) => post.category === category);
 };
 
 export default function BlogPage() {

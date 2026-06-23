@@ -9,8 +9,11 @@ import Button from "@/components/ui/Button";
 import Reveal from "@/components/common/Reveal";
 import { generalFaqs } from "@/data/faqs";
 import { IMG } from "@/data/images";
+import { fetchFaqs } from "@/lib/api";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
 
 export default function FAQPage() {
+  const { data: faqs } = useSupabaseData(fetchFaqs, generalFaqs);
   return (
     <Page>
       <SEO
@@ -20,7 +23,7 @@ export default function FAQPage() {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: generalFaqs.map((f) => ({
+          mainEntity: faqs.map((f) => ({
             "@type": "Question",
             name: f.question,
             acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -44,7 +47,7 @@ export default function FAQPage() {
               title="Frequently asked questions"
               className="mb-12"
             />
-            <Reveal><Accordion items={generalFaqs} /></Reveal>
+            <Reveal><Accordion items={faqs} /></Reveal>
 
             <div className="mt-12 rounded-xl border border-sand-200 bg-sand p-8 text-center">
               <h3 className="font-display text-xl font-bold text-primary">Still have a question?</h3>

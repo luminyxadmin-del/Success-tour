@@ -11,8 +11,10 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { Stagger, StaggerItem } from "@/components/common/Reveal";
 import CTABanner from "@/components/common/CTABanner";
-import { services } from "@/data/services";
+import { services as localServices } from "@/data/services";
 import { IMG } from "@/data/images";
+import { fetchServices } from "@/lib/api";
+import { useSupabaseData } from "@/hooks/useSupabaseData";
 
 const iconMap: Record<string, LucideIcon> = {
   Telescope, BedDouble, Plane, Users, Heart, Briefcase,
@@ -26,6 +28,7 @@ const process = [
 ];
 
 export default function ServicesPage() {
+  const { data: services } = useSupabaseData(fetchServices, localServices);
   return (
     <Page>
       <SEO

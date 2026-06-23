@@ -99,18 +99,11 @@ export default function HomePage() {
           >
             <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/55 to-primary/40" style={{ zIndex: 1 }} />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent" style={{ zIndex: 1 }} />
+          <div className="absolute inset-0" style={{ zIndex: 1, background: 'rgba(0,0,0,0.15)' }} />
         </div>
 
         <Container className="relative z-20 pt-28 pb-16">
           <div className="max-w-2xl">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-              className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent"
-            >
-              <Globe2 className="h-4 w-4" /> Bespoke East Africa Journeys Since 2008
-            </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.05 }}
               className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl"

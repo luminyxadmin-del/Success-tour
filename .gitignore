@@ -4,3 +4,12 @@ dist-ssr
 *.local
 .DS_Store
 .vscode/*
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# SQL files (schema & seed — keep locally, don't commit)
+*.sql
