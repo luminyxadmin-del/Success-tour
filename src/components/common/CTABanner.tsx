@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { IMG } from "@/data/images";
@@ -39,16 +38,10 @@ export default function CTABanner({
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/75">
             {subtitle}
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex items-center justify-center">
             <Button to="/packages" variant="secondary" size="lg">
               Book Now
             </Button>
-            <a
-              href={`tel:${company.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-accent"
-            >
-              <Phone className="h-4 w-4" /> {company.phone}
-            </a>
           </div>
         </motion.div>
       </Container>

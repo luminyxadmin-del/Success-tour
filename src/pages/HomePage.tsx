@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, ShieldCheck, Award, HeartHandshake, Leaf, Globe2, Star,
+  ArrowRight, ShieldCheck, Award, HeartHandshake, Leaf,
 } from "lucide-react";
 import Page from "@/components/common/Page";
 import SEO, { organizationSchema } from "@/seo/SEO";
@@ -120,15 +120,6 @@ export default function HomePage() {
               <Button to="/packages" variant="secondary" size="lg">Explore Packages <ArrowRight className="h-4 w-4" /></Button>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-8 flex items-center gap-3 text-sm text-white/80"
-            >
-              <span className="flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-accent text-accent" />)}
-              </span>
-              <span><strong className="text-white">4.9/5</strong> from 12,000+ happy travellers</span>
-            </motion.div>
           </div>
 
           {/* Search */}
