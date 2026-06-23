@@ -3,13 +3,13 @@ import {
   Gem, Building2, Trophy, GraduationCap,
   Check, ArrowRight, type LucideIcon,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import Page from "@/components/common/Page";
 import SEO from "@/seo/SEO";
 import PageHero from "@/components/common/PageHero";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
-import { Stagger, StaggerItem } from "@/components/common/Reveal";
 import CTABanner from "@/components/common/CTABanner";
 import { services as localServices } from "@/data/services";
 import { IMG } from "@/data/images";
@@ -53,12 +53,19 @@ export default function ServicesPage() {
             subtitle="From the first flicker of an idea to your final sundowner, we take care of every moving part."
             className="mb-14"
           />
-          <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => {
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s, i) => {
               const Icon = iconMap[s.icon] ?? Telescope;
               return (
-                <StaggerItem key={s.id}>
-                  <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-sand-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
+                <motion.div
+                  key={s.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.55, delay: i * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  className="flex"
+                >
+                  <div className="group flex w-full flex-col overflow-hidden rounded-xl border border-sand-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
                     {/* Gradient accent bar */}
                     <div className="h-1 w-full shrink-0 bg-gradient-to-r from-secondary via-secondary/60 to-accent" />
                     <div className="flex flex-1 flex-col p-7">
@@ -76,10 +83,10 @@ export default function ServicesPage() {
                       </ul>
                     </div>
                   </div>
-                </StaggerItem>
+                </motion.div>
               );
             })}
-          </Stagger>
+          </div>
         </Container>
       </section>
 

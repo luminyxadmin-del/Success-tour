@@ -31,7 +31,7 @@ export default function Footer() {
             </span>
           </Link>
           <p className="max-w-sm text-sm leading-relaxed text-white/60">
-            Bespoke East Africa safaris, beach escapes and cultural journeys across Kenya, Uganda and Tanzania — crafted with care since {company.founded}. Travel that delights you and protects East Africa.
+            From the lion-filled plains of the Maasai Mara and elephant herds of Amboseli, to the flamingo shores of Nakuru and the white sands of Diani — we craft journeys that are entirely, unforgettably yours.
           </p>
           <div className="mt-6 flex gap-3">
             {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
