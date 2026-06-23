@@ -6,7 +6,6 @@ import SEO, { organizationSchema } from "@/seo/SEO";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/common/Reveal";
 import CTABanner from "@/components/common/CTABanner";
-import { achievements } from "@/data/stats";
 import { IMG } from "@/data/images";
 
 // Cinematic hero: safari car with wildebeest in the Masai Mara
@@ -344,37 +343,6 @@ export default function AboutPage() {
                 </div>
               </div>
             </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── ACHIEVEMENTS BAR ──────────────────────────────────────────────── */}
-      <section className="py-20" style={{ backgroundColor: NAVY }}>
-        <Container>
-          <div className="grid grid-cols-2 gap-y-14 lg:grid-cols-4">
-            {achievements.map((a, i) => (
-              <Reveal key={a.label} delay={i * 0.09}>
-                <div className="relative px-6 text-center">
-                  {/* Vertical separator */}
-                  {i < achievements.length - 1 && (
-                    <div
-                      className="absolute right-0 top-1/2 hidden h-14 w-px -translate-y-1/2 lg:block"
-                      style={{ backgroundColor: `${GOLD}40` }}
-                    />
-                  )}
-                  <p
-                    className="text-4xl font-bold sm:text-5xl"
-                    style={{ fontFamily: CORMORANT, color: GOLD }}
-                  >
-                    {a.value}
-                    {a.suffix && <span className="text-3xl">{a.suffix}</span>}
-                  </p>
-                  <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
-                    {a.label}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </Container>
       </section>
