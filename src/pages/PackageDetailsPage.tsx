@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import {
-  Clock, Users, MapPin, Calendar, Check, X as XIcon, Star, ChevronRight, Sparkles, MessageCircle,
+  Clock, Users, MapPin, Check, X as XIcon, Star, ChevronRight, Sparkles, MessageCircle,
   Utensils, Info,
 } from "lucide-react";
 import Page from "@/components/common/Page";
@@ -17,7 +17,7 @@ import QuoteRequestForm from "@/components/forms/QuoteRequestForm";
 import PackageCard from "@/components/cards/PackageCard";
 import NotFoundPage from "./NotFoundPage";
 import { getPackage, packages, bookingNotes } from "@/data/packages";
-import { formatPrice, formatDate } from "@/utils/format";
+import { formatPrice } from "@/utils/format";
 
 const MEAL_LABELS: Record<string, string> = { B: "Breakfast", L: "Lunch", D: "Dinner" };
 const expandMeals = (meals: string) =>
@@ -215,7 +215,6 @@ export default function PackageDetailsPage() {
                     <p className="flex items-center justify-between"><span className="text-muted">Duration</span><span className="font-semibold text-primary">{pkg.duration}</span></p>
                     <p className="flex items-center justify-between"><span className="text-muted">Group size</span><span className="font-semibold text-primary">{pkg.groupSize}</span></p>
                     <p className="flex items-center justify-between"><span className="text-muted">Type</span><span className="font-semibold text-primary">{pkg.type}</span></p>
-                    <p className="flex items-center justify-between"><span className="text-muted">Next departure</span><span className="inline-flex items-center gap-1 font-semibold text-primary"><Calendar className="h-3.5 w-3.5 text-secondary" />{formatDate(pkg.nextDeparture)}</span></p>
                   </div>
                   <div className="mt-5 space-y-3">
                     <Button variant="secondary" size="lg" fullWidth onClick={() => setBookNowOpen(true)}>Book Now</Button>
