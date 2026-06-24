@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ChevronDown, Compass } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { company } from "@/data/company";
 import Button from "@/components/ui/Button";
@@ -38,14 +38,13 @@ export default function Navbar() {
   return (
     <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300",
       solid ? "bg-white/95 shadow-soft backdrop-blur" : "bg-transparent")}>
-      <nav className="container-max flex h-[72px] items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className={cn("flex h-9 w-9 items-center justify-center rounded", solid ? "bg-primary text-white" : "bg-white/15 text-white backdrop-blur")}>
-            <Compass className="h-5 w-5" />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className={cn("font-display text-lg font-bold", solid ? "text-primary" : "text-white")}>Luminyx Travel</span>
-          </span>
+      <nav className="container-max flex h-[96px] items-center justify-between">
+        <Link to="/" className="flex items-center">
+          <img
+            src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782321273/Luminyx_Travel_Final_Logo-01-01_oxk0rv.png"
+            alt="Luminyx Travel"
+            className="h-24 w-auto object-contain"
+          />
         </Link>
 
         <ul className="hidden items-center gap-7 lg:flex">

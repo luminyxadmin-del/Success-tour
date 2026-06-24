@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Compass, Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 import { company } from "@/data/company";
 import { destinations } from "@/data/destinations";
 import { isDestinationInRoutes } from "@/data/packages";
@@ -24,11 +24,12 @@ export default function Footer() {
     <footer className="bg-primary text-white/80">
       <div className="container-max grid grid-cols-1 gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <Link to="/" className="mb-4 flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded bg-secondary text-white"><Compass className="h-5 w-5" /></span>
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-lg font-bold text-white">Luminyx Travel</span>
-            </span>
+          <Link to="/" className="mb-4 inline-flex items-center rounded-xl bg-white/95 px-3 py-2 shadow-md">
+            <img
+              src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782321273/Luminyx_Travel_Final_Logo-01-01_oxk0rv.png"
+              alt="Luminyx Travel"
+              className="h-20 w-auto object-contain"
+            />
           </Link>
           <p className="max-w-sm text-sm leading-relaxed text-white/60">
             From the lion-filled plains of the Maasai Mara and elephant herds of Amboseli, to the flamingo shores of Nakuru and the white sands of Diani — we craft journeys that are entirely, unforgettably yours.
