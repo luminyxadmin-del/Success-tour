@@ -66,7 +66,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button to="/packages" variant="secondary" size="sm">Inquire Now</Button>
+          <Button to="/packages" variant="secondary" size="sm">Enquire Now</Button>
         </div>
 
         <button onClick={() => setMobileOpen((v) => !v)} className="lg:hidden" aria-label="Toggle menu">
@@ -90,7 +90,7 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="mt-4 flex gap-3">
-                <Button to="/packages" variant="secondary" size="sm" fullWidth>Inquire Now</Button>
+                <Button to="/packages" variant="secondary" size="sm" fullWidth>Enquire Now</Button>
               </li>
               <li className="mt-3 text-center text-xs text-muted">Call us: {company.phone}</li>
             </ul>

@@ -117,7 +117,7 @@ export default function SignatureHubPage() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Button to="/packages" variant="secondary" size="md">
-              Inquire Now
+              Enquire Now
             </Button>
             <Button href="#collection" variant="white" size="md">
               Explore the Collection
@@ -365,7 +365,7 @@ export default function SignatureHubPage() {
               />
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button to="/packages" variant="secondary" size="lg">
-                  Inquire Now
+                  Enquire Now
                 </Button>
                 <Button to="/contact" variant="ghost" size="lg">
                   Speak with a Specialist

@@ -212,7 +212,7 @@ export default function PackageDetailsPage() {
                     <p className="flex items-center justify-between"><span className="text-muted">Type</span><span className="font-semibold text-primary">{pkg.type}</span></p>
                   </div>
                   <div className="mt-5 space-y-3">
-                    <Button variant="secondary" size="lg" fullWidth onClick={() => setBookNowOpen(true)}>Inquire Now</Button>
+                    <Button variant="secondary" size="lg" fullWidth onClick={() => setBookNowOpen(true)}>Enquire Now</Button>
                     <Button variant="ghost" size="lg" fullWidth onClick={() => setQuoteOpen(true)}>
                       <MessageCircle className="h-4 w-4" /> Get a Quote
                     </Button>

@@ -40,7 +40,7 @@ export default function CTABanner({
           </p>
           <div className="mt-8 flex items-center justify-center">
             <Button to="/packages" variant="secondary" size="lg">
-              Inquire Now
+              Enquire Now
 </Button>
           </div>
         </motion.div>
