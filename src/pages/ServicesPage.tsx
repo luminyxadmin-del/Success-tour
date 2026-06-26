@@ -104,7 +104,7 @@ export default function ServicesPage() {
             ))}
           </div>
           <div className="mt-14 text-center">
-            <Button to="/packages" variant="secondary" size="lg">Book Now <ArrowRight className="h-4 w-4" /></Button>
+            <Button to="/packages" variant="secondary" size="lg">Inquire Now <ArrowRight className="h-4 w-4" /></Button>
           </div>
         </Container>
       </section>

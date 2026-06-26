@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="lg:col-span-2">
           <Link to="/" className="mb-4 inline-flex items-center rounded-xl bg-white/95 px-3 py-2 shadow-md">
             <img
-              src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782321273/Luminyx_Travel_Final_Logo-01-01_oxk0rv.png"
+              src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782474419/Luminyx_Travel_Final_Logo_for_website-01_nksyeu.png"
               alt="Luminyx Travel"
               className="h-20 w-auto object-contain"
             />

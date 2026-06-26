@@ -41,7 +41,7 @@ export default function Navbar() {
       <nav className="container-max flex h-[96px] items-center justify-between">
         <Link to="/" className="flex items-center">
           <img
-            src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782321273/Luminyx_Travel_Final_Logo-01-01_oxk0rv.png"
+            src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782474419/Luminyx_Travel_Final_Logo_for_website-01_nksyeu.png"
             alt="Luminyx Travel"
             className="h-24 w-auto object-contain"
           />
@@ -66,7 +66,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button to="/packages" variant="secondary" size="sm">Book Now</Button>
+          <Button to="/packages" variant="secondary" size="sm">Inquire Now</Button>
         </div>
 
         <button onClick={() => setMobileOpen((v) => !v)} className="lg:hidden" aria-label="Toggle menu">
@@ -90,7 +90,7 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="mt-4 flex gap-3">
-                <Button to="/packages" variant="secondary" size="sm" fullWidth>Book Now</Button>
+                <Button to="/packages" variant="secondary" size="sm" fullWidth>Inquire Now</Button>
               </li>
               <li className="mt-3 text-center text-xs text-muted">Call us: {company.phone}</li>
             </ul>
