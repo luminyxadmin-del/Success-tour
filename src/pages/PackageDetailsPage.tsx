@@ -17,7 +17,6 @@ import QuoteRequestForm from "@/components/forms/QuoteRequestForm";
 import PackageCard from "@/components/cards/PackageCard";
 import NotFoundPage from "./NotFoundPage";
 import { getPackage, packages, bookingNotes } from "@/data/packages";
-import { formatPrice } from "@/utils/format";
 
 const MEAL_LABELS: Record<string, string> = { B: "Breakfast", L: "Lunch", D: "Dinner" };
 const expandMeals = (meals: string) =>
@@ -207,17 +206,13 @@ export default function PackageDetailsPage() {
             <aside className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
                 <div className="rounded-lg border border-sand-200 bg-white p-6 shadow-lift">
-                  <p className="text-xs uppercase tracking-wide text-muted">From</p>
-                  <p className="font-display text-4xl font-bold text-primary">
-                    {formatPrice(pkg.price)}<span className="text-sm font-normal text-muted"> / person</span>
-                  </p>
-                  <div className="mt-5 space-y-3 border-y border-sand-200 py-5 text-sm">
+                  <div className="space-y-3 border-b border-sand-200 pb-5 text-sm">
                     <p className="flex items-center justify-between"><span className="text-muted">Duration</span><span className="font-semibold text-primary">{pkg.duration}</span></p>
                     <p className="flex items-center justify-between"><span className="text-muted">Group size</span><span className="font-semibold text-primary">{pkg.groupSize}</span></p>
                     <p className="flex items-center justify-between"><span className="text-muted">Type</span><span className="font-semibold text-primary">{pkg.type}</span></p>
                   </div>
                   <div className="mt-5 space-y-3">
-                    <Button variant="secondary" size="lg" fullWidth onClick={() => setBookNowOpen(true)}>Book Now</Button>
+                    <Button variant="secondary" size="lg" fullWidth onClick={() => setBookNowOpen(true)}>Inquire Now</Button>
                     <Button variant="ghost" size="lg" fullWidth onClick={() => setQuoteOpen(true)}>
                       <MessageCircle className="h-4 w-4" /> Get a Quote
                     </Button>
