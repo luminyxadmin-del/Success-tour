@@ -153,6 +153,7 @@ function InquiryRow({ q, onRefresh }: { q: InquirySubmission; onRefresh: () => v
           <div className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-3">
             <Field label="Name" value={q.name} />
             <Field label="Email" value={q.email} />
+            {q.phone && <Field label="Phone" value={q.phone} />}
             <Field label="Package" value={q.package_name} />
             <Field label="Travelers" value={String(q.travelers)} />
             <Field label="Start Date" value={q.travel_start_date} />

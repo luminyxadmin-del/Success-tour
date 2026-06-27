@@ -194,7 +194,7 @@ export default function InquiryForm({
         fullWidth
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Sending…" : "Send Inquiry"}{" "}
+        {isSubmitting ? "Sending…" : "Send Enquiry"}{" "}
         <Send className="h-4 w-4" />
       </Button>
 
