@@ -77,6 +77,7 @@ create table public.inquiry_submissions (
   id            uuid primary key default uuid_generate_v4(),
   name          text    not null,
   email         text    not null,
+  phone         text,
   package_name  text    not null,
   travelers          integer not null check (travelers >= 1),
   travel_start_date  date    not null,
