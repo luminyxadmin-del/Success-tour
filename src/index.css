@@ -25,7 +25,7 @@
 
 @layer components {
   .container-max {
-    @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-full px-4 lg:px-20;
   }
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-[0.18em] text-secondary;

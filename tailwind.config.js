@@ -37,7 +37,7 @@ export default {
         sans: ['"Montserrat"', "system-ui", "sans-serif"],
       },
       maxWidth: {
-        container: "1280px",
+        container: "1400px",
       },
       boxShadow: {
         soft: "0 10px 30px rgba(15, 23, 42, 0.06)",

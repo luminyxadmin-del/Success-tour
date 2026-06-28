@@ -36,14 +36,26 @@ export default function Navbar() {
   const solid = scrolled || !isHome || mobileOpen;
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-300",
-      solid ? "bg-white/95 shadow-soft backdrop-blur" : "bg-transparent")}>
-      <nav className="container-max flex h-[96px] items-center justify-between">
-        <Link to="/" className="flex items-center">
+    <header
+      className={cn("fixed inset-x-0 top-0 z-50", solid ? "bg-white/95 shadow-soft backdrop-blur" : "")}
+      style={{
+        transition: "all 0.4s ease",
+        ...(solid ? {} : {
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(20px) saturate(180%) brightness(110%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%) brightness(110%)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+        }),
+      }}
+    >
+      <nav style={{ height: "72px", display: "flex", alignItems: "center", overflow: "visible" }}
+        className="mx-auto w-full max-w-full justify-between px-4 lg:px-20">
+        <Link to="/" className="flex shrink-0 items-center">
           <img
             src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782474419/Luminyx_Travel_Final_Logo_for_website-01_nksyeu.png"
             alt="Luminyx Travel"
-            className="h-24 w-auto object-contain"
+            style={{ height: "56px", width: "auto", objectFit: "contain", display: "block" }}
           />
         </Link>
 
@@ -55,7 +67,7 @@ export default function Navbar() {
               <NavLink to={l.to}
                 className={({ isActive }) => cn(
                   "flex items-center gap-1 text-sm font-medium transition link-underline",
-                  solid ? "text-primary/80 hover:text-primary" : "text-white/90 hover:text-white",
+                  solid ? "text-primary/80 hover:text-primary" : "text-white/90 hover:text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
                   isActive && (solid ? "!text-secondary" : "!text-accent")
                 )}>
                 {l.label}{l.mega && <ChevronDown className="h-3.5 w-3.5" />}
