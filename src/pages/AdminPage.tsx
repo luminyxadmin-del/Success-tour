@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   LayoutDashboard, FileText, MessageSquare, Phone,
   LogOut, Trash2, ChevronDown, ChevronUp, CheckCircle,
@@ -513,6 +513,9 @@ export default function AdminPage() {
   const [quoteRequests, setQuoteRequests] = useState<QuoteRequestSubmission[]>([]);
   const [stats, setStats] = useState({ total: 0, newCount: 0, todayCount: 0, inquiryCount: 0, contactCount: 0, quoteRequestCount: 0 });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const notifRef = useRef<HTMLDivElement>(null);
 
   // Check Supabase session on mount
   useEffect(() => {
@@ -549,6 +552,39 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => { if (authed) refresh(); }, [authed, refresh]);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await refresh();
+    setRefreshing(false);
+  };
+
+  // Close notification popup on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
+        setNotifOpen(false);
+      }
+    };
+    if (notifOpen) document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [notifOpen]);
+
+  const markAsRead = async (type: Submission["type"], id: string) => {
+    await updateStatus(type, id, "contacted");
+    await refresh();
+  };
+
+  const markAllAsRead = async () => {
+    const allNew = [
+      ...inquiries.filter((s) => s.status === "new").map((s) => ({ id: s.id, type: "inquiry" as const })),
+      ...contacts.filter((s) => s.status === "new").map((s) => ({ id: s.id, type: "contact" as const })),
+      ...quoteRequests.filter((s) => s.status === "new").map((s) => ({ id: s.id, type: "quote_request" as const })),
+    ];
+    await Promise.all(allNew.map(({ type, id }) => updateStatus(type, id, "contacted")));
+    await refresh();
+    setNotifOpen(false);
+  };
 
   // Show nothing while session is being checked
   if (authed === null) {
@@ -661,17 +697,84 @@ export default function AdminPage() {
             <p className="text-xs text-slate-400">{today}</p>
           </div>
           <div className="flex items-center gap-2">
-            {newTotal > 0 && (
-              <div className="flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 ring-1 ring-blue-200">
-                <Bell className="h-3.5 w-3.5 text-blue-600" />
-                <span className="text-xs font-bold text-blue-600">{newTotal} new</span>
-              </div>
-            )}
+            {/* Notification Bell */}
+            <div className="relative" ref={notifRef}>
+              <button
+                onClick={() => setNotifOpen((v) => !v)}
+                className="relative flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 bg-white transition hover:bg-slate-50"
+                title="Notifications"
+              >
+                <Bell className="h-4 w-4 text-slate-600" />
+                {newTotal > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-500 text-[9px] font-bold text-white">
+                    {newTotal > 9 ? "9+" : newTotal}
+                  </span>
+                )}
+              </button>
+
+              {/* Dropdown */}
+              {notifOpen && (
+                <div className="absolute right-0 top-11 z-50 w-80 rounded-2xl border border-slate-200 bg-white shadow-2xl">
+                  {/* Header */}
+                  <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+                    <p className="text-sm font-bold text-slate-900">
+                      Notifications {newTotal > 0 && <span className="ml-1 rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-600">{newTotal} new</span>}
+                    </p>
+                    {newTotal > 0 && (
+                      <button
+                        onClick={markAllAsRead}
+                        className="text-xs font-semibold text-[#0EA5A4] hover:underline"
+                      >
+                        Mark all as read
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Items */}
+                  <ul className="max-h-72 overflow-y-auto divide-y divide-slate-50">
+                    {[
+                      ...inquiries.filter((s) => s.status === "new").map((s) => ({ ...s, _type: "inquiry" as const, _label: s.package_name })),
+                      ...contacts.filter((s) => s.status === "new").map((s) => ({ ...s, _type: "contact" as const, _label: s.subject })),
+                      ...quoteRequests.filter((s) => s.status === "new").map((s) => ({ ...s, _type: "quote_request" as const, _label: s.package_name })),
+                    ]
+                      .sort((a, b) => new Date(b.submitted_at).getTime() - new Date(a.submitted_at).getTime())
+                      .map((item) => (
+                        <li key={item.id} className="flex items-start gap-3 px-4 py-3 hover:bg-slate-50">
+                          <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-600">
+                            {item.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-semibold text-slate-800">{item.name}</p>
+                            <p className="truncate text-xs text-slate-400">{item._label}</p>
+                            <p className="mt-0.5 text-[10px] text-slate-300">{formatDate(item.submitted_at)}</p>
+                          </div>
+                          <button
+                            onClick={() => markAsRead(item._type, item.id)}
+                            className="shrink-0 rounded-lg bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-500 transition hover:bg-emerald-50 hover:text-emerald-600"
+                          >
+                            Mark read
+                          </button>
+                        </li>
+                      ))}
+                    {newTotal === 0 && (
+                      <li className="flex flex-col items-center justify-center py-10 text-slate-400">
+                        <Bell className="h-8 w-8 mb-2 text-slate-200" />
+                        <p className="text-sm font-medium">All caught up!</p>
+                        <p className="text-xs">No new notifications</p>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+            </div>
+
             <button
-              onClick={refresh}
-              className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"
+              onClick={handleRefresh}
+              disabled={refreshing}
+              className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-60"
             >
-              <RefreshCw className="h-3.5 w-3.5" /> Refresh
+              <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} />
+              {refreshing ? "Refreshing…" : "Refresh"}
             </button>
           </div>
         </header>
