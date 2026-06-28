@@ -28,7 +28,7 @@ export default function Footer() {
             <img
               src="https://res.cloudinary.com/dtg3lepr4/image/upload/v1782474419/Luminyx_Travel_Final_Logo_for_website-01_nksyeu.png"
               alt="Luminyx Travel"
-              className="h-20 w-auto object-contain"
+              style={{ height: "56px", width: "auto", objectFit: "contain", display: "block" }}
             />
           </Link>
           <p className="max-w-sm text-sm leading-relaxed text-white/60">
