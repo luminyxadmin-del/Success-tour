@@ -198,6 +198,18 @@ async function main() {
     .replace(/[ \t]*<title>[\s\S]*?<\/title>\r?\n?/i, "")
     .replace(/[ \t]*<meta\s+name="description"[\s\S]*?\/?>\r?\n?/i, "");
 
+  // Untouched SPA shell for routes with no prerendered file (/admin, unknown
+  // URLs). vercel.json rewrites to it; it can't be index.html, because that
+  // becomes the home page below and cleanUrls 308-redirects /index.html anyway.
+  await writeFile(
+    path.join(distDir, "app-shell.html"),
+    template.replace(
+      /([ \t]*)<\/head>/i,
+      `$1  <meta name="robots" content="noindex" />\n$1</head>`
+    ),
+    "utf8"
+  );
+
   const buildDate = new Date().toISOString().slice(0, 10);
   const seen = new Set();
 
